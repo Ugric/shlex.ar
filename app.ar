@@ -1,0 +1,4 @@
+import "src" as lex
+
+
+term.log(lex.split(lex.join([ "argon", "is", "a", "programming", "language", "lol ' epic" ]), {}))

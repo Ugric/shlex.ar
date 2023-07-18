@@ -1,0 +1,12 @@
+let __needs_quoting(str) = do
+    return " " in str || "\t" in str || "\n" in str || "\r" in str || "'" in str || '"' in str || "\\" in str
+
+let join(args) = do
+    let output = []
+    for (i from 0 to args.length) do
+        let arg = args[i]
+        if (__needs_quoting(arg)) do
+            output.append("'" + arg.replace("'", "\\'") + "'")
+        else do
+            output.append(arg)
+    return output.join(" ")

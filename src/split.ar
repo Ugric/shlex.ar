@@ -1,0 +1,40 @@
+let split(s, options) = do
+    s = s.strip()
+
+    let comments= 'comments' in options && options['comments']
+    let posix = 'posix' not in options || options['posix']
+
+    let result = []
+    let current_arg = ""
+    let in_quote = false
+    let escape = false
+
+    for (i from 0 to s.length) do
+        let char = s[i]
+        if (escape) do
+            current_arg = current_arg + char
+            escape = false
+        else if (char == "\\") do
+            escape = true
+        else if (char == " " && (not in_quote)) do
+            if (current_arg) do
+                result.append(current_arg)
+            current_arg = ""
+        else if (char in ['"', "'"]) do
+            if (in_quote && in_quote == char) do
+                in_quote = false
+            else if (not in_quote) do
+                in_quote = char
+            else do
+                current_arg = current_arg + char
+        else if (posix && char == "#") do
+            if (not comments) do
+                break
+            current_arg = current_arg + char
+        else do
+            current_arg = current_arg + char
+
+    if (current_arg) do
+        result.append(current_arg)
+
+    return result
