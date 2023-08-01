@@ -1,5 +1,12 @@
+
+let alphanumeric = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789_-"
+
 let __needs_quoting(str) = do
-    return " " in str || "\t" in str || "\n" in str || "\r" in str || "'" in str || '"' in str || "\\" in str || "|" in str
+    for (i from 0 to str.length) do
+        let char = str[i]
+        if (char not in alphanumeric) do
+            return true
+    return false
 
 let join(args) = do
     let output = []
