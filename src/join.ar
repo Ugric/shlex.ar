@@ -1,5 +1,5 @@
 let __needs_quoting(str) = do
-    return " " in str || "\t" in str || "\n" in str || "\r" in str || "'" in str || '"' in str || "\\" in str
+    return " " in str || "\t" in str || "\n" in str || "\r" in str || "'" in str || '"' in str || "\\" in str || "|" in str
 
 let join(args) = do
     let output = []
